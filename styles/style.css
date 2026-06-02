@@ -311,10 +311,6 @@
   text-transform: uppercase;
 }
 
-.dialog__form {
-  margin: 0;
-}
-
 .dialog__button {
   inline-size: 100%;
   text-transform: uppercase;
