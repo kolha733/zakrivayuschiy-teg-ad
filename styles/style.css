@@ -1,16 +1,351 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-*/
-
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  color: var(--text-color);
+  font-family: var(--main-font), Arial, sans-serif;
+  font-variation-settings: "wght" var(--regular-font-weight);
+  background-color: var(--page-gradient-start);
+  background-image: var(--page-background);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.content-section {
+  inline-size: var(--content-inline-size);
+  margin-inline: auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--header-gap);
+  margin-block: 100px;
+  padding-block: var(--header-padding-block);
+  border: var(--border);
+  background-color: var(--background-color);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.header__logo {
+  color: inherit;
+  font-family: var(--accent-font), fantasy;
+  font-size: var(--header-logo-size);
+  line-height: 1;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.header__logo:hover {
+  opacity: 0.6;
+}
+
+.header__logo:focus {
+  outline: none;
+}
+
+.header__logo:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
+.header__title {
+  font-family: var(--accent-font), fantasy;
+  font-size: var(--header-title-size);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.main {
+  padding-block-end: 100px;
+}
+
+.cards {
+  display: grid;
+  gap: var(--main-block-gap);
+}
+
+.card {
+  border: var(--border);
+  background-color: var(--background-color);
+}
+
+.card__title {
+  padding: 4px 10px 6px;
+  font-size: var(--card-text-size);
+  font-weight: var(--bold-font-weight);
+  font-variation-settings: "wght" var(--bold-font-weight);
+  line-height: 1.22;
+  overflow-wrap: break-word;
+}
+
+.card__image-wrapper {
+  position: relative;
+  border-block-start: var(--border);
+  border-block-end: var(--border);
+}
+
+.card__image {
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card__image_filter_start {
+  filter: grayscale(0.85);
+}
+
+.card__image_filter_blank {
+  filter: sepia(0.8);
+}
+
+.card__image_filter_fail {
+  filter: saturate(1.8);
+}
+
+.card__image_filter_ideal {
+  filter: hue-rotate(35deg) contrast(1.18);
+}
+
+.card__image_filter_people {
+  filter: blur(1px) brightness(0.95);
+}
+
+.card__image_filter_strategy {
+  filter: invert(0.12);
+}
+
+.card__image_filter_tired {
+  filter: contrast(1.35);
+}
+
+.card__image_filter_now {
+  filter: opacity(0.86) saturate(1.45);
+}
+
+.card__label {
+  position: absolute;
+  inset-block-start: 25px;
+  inset-inline-end: 25px;
+  opacity: 0.5;
+  color: var(--text-color);
+  font-family: var(--accent-font), fantasy;
+  font-size: var(--label-size);
+  line-height: 1;
+  text-transform: uppercase;
+  mix-blend-mode: hard-light;
+  text-shadow:
+    1px 0 var(--label-stroke-color),
+    -1px 0 var(--label-stroke-color),
+    0 1px var(--label-stroke-color),
+    0 -1px var(--label-stroke-color);
+}
+
+@supports (
+  (-webkit-text-stroke: 1px var(--label-stroke-color)) or
+    (text-stroke: 1px var(--label-stroke-color))
+) {
+  .card__label {
+    text-shadow: none;
+    text-stroke: 1px var(--label-stroke-color);
+    -webkit-text-stroke: 1px var(--label-stroke-color);
+  }
+}
+
+.card__content {
+  display: grid;
+  gap: 27px;
+  padding: 25px;
+}
+
+.card__text {
+  font-size: var(--card-text-size);
+  font-weight: var(--regular-font-weight);
+  font-variation-settings: "wght" var(--regular-font-weight);
+  line-height: var(--card-text-line-height);
+  overflow-wrap: break-word;
+}
+
+.card__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  padding: 0 25px 25px;
+}
+
+.card__icon-button {
+  display: grid;
+  place-items: center;
+  inline-size: 39px;
+  block-size: 38px;
+  padding: 0;
+  border: 2px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.card__icon-button:focus {
+  outline: none;
+}
+
+.card__icon-button:focus-visible {
+  border-color: var(--accent-color);
+}
+
+.like-icon {
+  display: block;
+  inline-size: 39px;
+  block-size: 36px;
+}
+
+.button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-block-size: 38px;
+  border: var(--border);
+  padding: 9px 17px;
+  overflow: hidden;
+  color: var(--button-text-color);
+  font-family: var(--accent-font), fantasy;
+  font-size: 14px;
+  line-height: 0.9;
+  background-color: var(--background-color);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease-in-out;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 2px 2px 0 var(--accent-color);
+}
+
+.button:focus-visible {
+  box-shadow: 2px 2px 0 var(--accent-color);
+}
+
+.button__text,
+.button__icon {
+  position: relative;
+  z-index: 1;
+  mix-blend-mode: difference;
+}
+
+.button__icon {
+  inline-size: 21px;
+  block-size: 21px;
+  fill: currentColor;
+}
+
+.card__like-button {
+  inline-size: 130px;
+}
+
+.save-button {
+  min-inline-size: 335px;
+  margin: 50px auto 0;
+  padding: 15px 20px;
+}
+
+.save-button__icon {
+  inline-size: 21px;
+  block-size: 21px;
+}
+
+.dialog {
+  inline-size: var(--dialog-inline-size);
+  border: var(--border);
+  padding: 30px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.dialog[open] {
+  display: grid;
+  gap: 30px;
+}
+
+.dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
+.dialog__content {
+  display: grid;
+  grid-template-columns: 39px 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+.dialog__icon {
+  inline-size: 39px;
+  block-size: 39px;
+  fill: var(--accent-color);
+}
+
+.dialog__title {
+  font-family: var(--accent-font), fantasy;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.dialog__form {
+  margin: 0;
+}
+
+.dialog__button {
+  inline-size: 100%;
+  text-transform: uppercase;
+}
+
+@media (width <= 375px) {
+  .header {
+    margin-block: 100px;
+  }
+
+  .card__title {
+    padding-block: 4px;
+  }
+
+  .card__label {
+    inset-block-start: 23px;
+    inset-inline-end: 12px;
+  }
+
+  .save-button {
+    flex-direction: column;
+    min-inline-size: 306px;
+    padding-block: 15px;
+  }
+
+  .save-button__icon {
+    inline-size: 28px;
+    block-size: 28px;
+  }
+
+  .dialog {
+    padding: 30px 40px;
+  }
 }
