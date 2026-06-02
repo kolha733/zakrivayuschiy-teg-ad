@@ -347,15 +347,17 @@
     </main>
 
     <dialog class="dialog" id="memory-dialog" aria-labelledby="dialog-title">
-      <div class="dialog__content">
-        <svg class="dialog__icon" aria-hidden="true" focusable="false">
-          <use href="./svg/floppy.svg#floppy"></use>
-        </svg>
-        <h2 class="dialog__title" id="dialog-title">Вставьте дискету, чтобы продолжить</h2>
-      </div>
-      <button class="button dialog__button" type="button">
-        <span class="button__text">ОК</span>
-      </button>
+      <form class="dialog__form" method="dialog">
+        <div class="dialog__content">
+          <svg class="dialog__icon" aria-hidden="true" focusable="false">
+            <use href="./svg/floppy.svg#floppy"></use>
+          </svg>
+          <h2 class="dialog__title" id="dialog-title">Вставьте дискету, чтобы продолжить</h2>
+        </div>
+        <button class="button dialog__button" type="submit">
+          <span class="button__text">ОК</span>
+        </button>
+      </form>
     </dialog>
 
     <script src="./scripts/like.js"></script>

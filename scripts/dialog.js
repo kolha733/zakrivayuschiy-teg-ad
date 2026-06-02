@@ -1,41 +1,46 @@
 const saveButton = document.querySelector('.save-button');
 const memoryDialog = document.querySelector('#memory-dialog');
-const dialogButton = document.querySelector('.dialog__button');
+const dialogForm = memoryDialog && memoryDialog.querySelector('.dialog__form');
+const dialogButton = memoryDialog && memoryDialog.querySelector('.dialog__button');
+
+function openMemoryDialog(event) {
+  event.preventDefault();
+
+  if (memoryDialog.open) {
+    return;
+  }
+
+  try {
+    memoryDialog.showModal();
+  } catch (error) {
+    void error;
+    memoryDialog.setAttribute('open', '');
+  }
+}
+
+function closeMemoryDialog(event) {
+  event.preventDefault();
+
+  if (!memoryDialog.open) {
+    return;
+  }
+
+  try {
+    memoryDialog.close();
+  } catch (error) {
+    void error;
+    memoryDialog.removeAttribute('open');
+  }
+}
 
 if (saveButton && memoryDialog) {
-  saveButton.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    if (!memoryDialog.open) {
-      try {
-        if (typeof memoryDialog.showModal === 'function') {
-          memoryDialog.showModal();
-        } else {
-          memoryDialog.setAttribute('open', '');
-        }
-      } catch (error) {
-        void error;
-        memoryDialog.setAttribute('open', '');
-      }
-    }
-  });
+  saveButton.addEventListener('click', openMemoryDialog);
 }
 
 if (dialogButton && memoryDialog) {
-  dialogButton.addEventListener('click', (event) => {
-    event.preventDefault();
+  dialogButton.addEventListener('click', closeMemoryDialog);
+}
 
-    if (memoryDialog.open) {
-      try {
-        if (typeof memoryDialog.close === 'function') {
-          memoryDialog.close();
-        } else {
-          memoryDialog.removeAttribute('open');
-        }
-      } catch (error) {
-        void error;
-        memoryDialog.removeAttribute('open');
-      }
-    }
-  });
+if (dialogForm && memoryDialog) {
+  dialogForm.addEventListener('submit', closeMemoryDialog);
 }
