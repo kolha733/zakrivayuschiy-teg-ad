@@ -33,21 +33,6 @@
   font-family: var(--accent-font), fantasy;
   font-size: var(--header-logo-size);
   line-height: 1;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-}
-
-.header__logo:hover {
-  opacity: 0.6;
-}
-
-.header__logo:focus {
-  outline: none;
-}
-
-.header__logo:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 4px;
 }
 
 .header__title {
