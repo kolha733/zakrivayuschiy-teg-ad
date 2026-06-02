@@ -7,9 +7,14 @@ if (saveButton && memoryDialog) {
     event.preventDefault();
 
     if (!memoryDialog.open) {
-      if (typeof memoryDialog.showModal === 'function') {
-        memoryDialog.showModal();
-      } else {
+      try {
+        if (typeof memoryDialog.showModal === 'function') {
+          memoryDialog.showModal();
+        } else {
+          memoryDialog.setAttribute('open', '');
+        }
+      } catch (error) {
+        void error;
         memoryDialog.setAttribute('open', '');
       }
     }
@@ -21,9 +26,14 @@ if (dialogButton && memoryDialog) {
     event.preventDefault();
 
     if (memoryDialog.open) {
-      if (typeof memoryDialog.close === 'function') {
-        memoryDialog.close();
-      } else {
+      try {
+        if (typeof memoryDialog.close === 'function') {
+          memoryDialog.close();
+        } else {
+          memoryDialog.removeAttribute('open');
+        }
+      } catch (error) {
+        void error;
         memoryDialog.removeAttribute('open');
       }
     }
